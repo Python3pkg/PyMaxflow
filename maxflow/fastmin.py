@@ -34,13 +34,13 @@ def energy_of_grid_labeling(D, V, labels):
     ndim = labels.ndim
     
     # Sum of the unary terms.
-    unary = np.sum([D[labels==i,i].sum() for i in xrange(num_labels)])
+    unary = np.sum([D[labels==i,i].sum() for i in range(num_labels)])
     
     slice0 = [slice(None)]*ndim
     slice1 = [slice(None)]*ndim
     # Binary terms.
     binary = 0
-    for i in xrange(ndim):
+    for i in range(ndim):
         slice0[i] = slice(1, None)
         slice1[i] = slice(None, -1)
         
@@ -86,22 +86,22 @@ def abswap_grid(D, V, max_cycles=None, labels=None):
     if max_cycles is None:
         rng = count()
     else:
-        rng = xrange(max_cycles)
+        rng = range(max_cycles)
     
     prev_labels = np.copy(labels)
     better_energy = np.inf
     # Cycles.
     for i in rng:
-        print >> sys.stderr, "Cycle", i
+        print("Cycle", i, file=sys.stderr)
         improved = False
         # Iterate through the labels.
-        for alpha, beta in combinations(range(num_labels), 2):
+        for alpha, beta in combinations(list(range(num_labels)), 2):
             energy, _ = abswap_grid_step(alpha, beta, D, V, labels)
-            print >> sys.stderr, "Energy of the last cut (α=%r, β=%r): %r" % \
-                    (alpha, beta, energy)
+            print("Energy of the last cut (α=%r, β=%r): %r" % \
+                    (alpha, beta, energy), file=sys.stderr)
             
             # Compute the energy of the labeling.
-            print >> sys.stderr, "Energy of the labeling:",
+            print("Energy of the labeling:", end=' ', file=sys.stderr)
             strimproved = ""
             energy = energy_of_grid_labeling(D, V, labels)
             
@@ -114,7 +114,7 @@ def abswap_grid(D, V, max_cycles=None, labels=None):
             else:
                 # If the energy has not been improved, discard the changes.
                 labels = prev_labels
-            print >> sys.stderr, energy, strimproved
+            print(energy, strimproved, file=sys.stderr)
         
         # Finish the minimization when convergence is reached.
         if not improved:
@@ -157,15 +157,15 @@ def aexpansion_grid(D, V, max_cycles=None, labels=None):
     if max_cycles is None:
         rng = count()
     else:
-        rng = xrange(max_cycles)
+        rng = range(max_cycles)
     
     better_energy = np.inf
     # Cycles.
     for i in rng:
-        print >> sys.stderr, "Cycle", i
+        print("Cycle", i, file=sys.stderr)
         improved = False
         # Iterate through the labels.
-        for alpha in xrange(num_labels):
+        for alpha in range(num_labels):
             energy, _ = aexpansion_grid_step(alpha, D, V, labels)
             strimproved = ""
             # Check if the better energy has been improved.
@@ -173,7 +173,7 @@ def aexpansion_grid(D, V, max_cycles=None, labels=None):
                 better_energy = energy
                 improved = True
                 strimproved = " (Improved!)"
-            print >> sys.stderr, "Energy of the last cut (α=%r): %r%s" % (alpha, energy, strimproved)
+            print("Energy of the last cut (α=%r): %r%s" % (alpha, energy, strimproved), file=sys.stderr)
         
         # Finish the minimization when convergence is reached.
         if not improved:

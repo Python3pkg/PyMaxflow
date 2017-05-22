@@ -41,8 +41,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'PyMaxflow'
-copyright = u'2011-2014, Pablo Márquez Neila'
+project = 'PyMaxflow'
+copyright = '2011-2014, Pablo Márquez Neila'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -179,8 +179,8 @@ htmlhelp_basename = 'PyMaxflowdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'PyMaxflow.tex', u'PyMaxflow Documentation',
-   u'Pablo Márquez Neila', 'manual'),
+  ('index', 'PyMaxflow.tex', 'PyMaxflow Documentation',
+   'Pablo Márquez Neila', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -214,6 +214,6 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'pymaxflow', u'PyMaxflow Documentation',
-     [u'Pablo Márquez Neila'], 1)
+    ('index', 'pymaxflow', 'PyMaxflow Documentation',
+     ['Pablo Márquez Neila'], 1)
 ]
